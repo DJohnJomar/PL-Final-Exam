@@ -10,19 +10,12 @@ The main class imports the necessary modules needed - the Tools module from the 
 
 from Library.Tools import Tools
 
-
-
-
 def main():
-    #Creates a tools object
+    # Create an instance of the Tools class, which initializes the inventory management system
     tools = Tools()
-    print("Welcome to the Parts-Inventory Management, now in Python using libraries!")
-    while True:
-        try:
-            #Calls the menu function of tools
-            tools.menu()
-        except Exception:
-            print("An error occured, please try again")
+    # Run the main loop of the Tkinter GUI application
+    tools.run()
 
 if __name__ == "__main__":
-    main()
+    # Call the main function to start the application
+    main() 

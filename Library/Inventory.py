@@ -5,22 +5,25 @@ The needed modules are imported from the library
 '''
 from datetime import datetime
 from Library.Transaction import Transaction
+
 class Inventory:
 
     def __init__(self):
+        # Initialize an empty list for parts and transactions
         self.partList = []
         self.transactionList = []
 
     def addPart(self, part):
+        # Add a new part to the part list
         self.partList.append(part)
 
-    #The process of adding a transaction in the list
     def addTransaction(self, condition, part, oldPartNumber):
+        # Add a new transaction based on the condition
         currentDate = datetime.now().strftime("%Y-%m-%d")
         error = ""
         transactionDesc = ""
 
-        # Setting Transaction Description
+        # Set the transaction description based on the condition
         if condition == 1:
             transactionDesc = "Added a new part"
         elif condition == 2:
@@ -32,10 +35,9 @@ class Inventory:
         elif condition == 5:
             transactionDesc = "Part Deleted"
 
-        # Setting up the error
-        # The errors can be if part number or the part description exceeds the maximum characters.
-        # The errors in the transaction disappears if they are fixed accordingly
-        if self.checkForError( part):
+        # Check for errors in the part
+        if self.checkForError(part):
+            # Set the appropriate error message
             if len(str(part.getPartNumber())) > 10 and len(part.getPartDescription()) > 26:
                 error = "Part Number and Description EXCEEDS MAXIMUM CHARACTERS (10 and 26 Respectively)."
             elif len(str(part.getPartNumber())) > 10:
@@ -45,11 +47,12 @@ class Inventory:
         else:
             error = ""
 
+        # Create a new transaction and add it to the transaction list
         transaction = Transaction(part, currentDate, transactionDesc, error)
         self.transactionList.append(transaction)
 
-    #Checks for errors, returns true if there is an error
     def checkForError(self, part):
+        # Check if the part has any errors
         has_error = False
         if len(str(part.getPartNumber())) > 10 and len(part.getPartDescription()) > 26:
             has_error = True
@@ -58,6 +61,5 @@ class Inventory:
         elif len(part.getPartDescription()) > 26:
             has_error = True
         return has_error
-
 
     
