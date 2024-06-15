@@ -16,10 +16,14 @@ class Tools:
         self.initUI()
 
     def initUI(self):
-        # Initialize the main window
+       # Initialize the main window
         self.root = Tk()
         self.root.title("Parts Inventory Management")
         self.root.geometry("500x400")  # Set the width to 500 pixels and height to 400 pixels
+
+       # Create header text at the top
+        title_label = Label(self.root, text="Parts Inventory Management", font=('Helvetica', 18, 'bold'))
+        title_label.pack(pady=10)
 
         # Create the menu frame
         menu_frame = Frame(self.root)
@@ -35,7 +39,6 @@ class Tools:
         Button(menu_frame, text="View Parts", command=self.view_parts_ui, font=button_font, height=2, width=20).pack(fill=X, pady=5)
         Button(menu_frame, text="View Transactions", command=self.view_transactions_ui, font=button_font, height=2, width=20).pack(fill=X, pady=5)
         Button(menu_frame, text="Exit", command=self.root.quit, font=button_font, height=2, width=20).pack(fill=X, pady=5)
-
     def run(self):
         # Run the main loop
         self.root.mainloop()
